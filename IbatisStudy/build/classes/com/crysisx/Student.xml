@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="Student" type="com.crysisx.Student"/>
+	
+	<select id="selectAllStudent"  resultClass="Student">
+	       select * 
+	       from student
+	</select>
+	
+	<select  parameterClass="int"   id="selectStudentById"   resultClass="Student">
+	   select *
+	   from Student
+	   where sid=#sid# 
+	</select>
+	<insert id="insertStudent" parameterClass="student">
+	    insert into Student (sid,sname,major,birth,score)
+	    values              (#sid#,#sname#,#major#,#birth#,#score#)
+	</insert>
+	<delete id ="deleteStudentById" parameterClass="int">
+	    delete 
+	    from Student 
+	    where sid  = #sid#
+	</delete>
+	<update id="updateStudent" parameterClass="Student">
+	       update Student
+	       
+	       set 
+	          major = #major#,
+	          sname = #sname#,
+	          birth = #birth#,
+	          score = #score#
+	        where
+	         sid =#sid#  
+	</update>
+	
+	<select  parameterClass="String"   id="selectStudentByName"   resultClass="Student">
+	   select *
+	   from Student
+	   where sname like '%$sname$%' 
+	</select>
+	
+</sqlMap>
